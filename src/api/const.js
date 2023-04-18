@@ -1,7 +1,7 @@
 export const URL_API = 'https://api.unsplash.com';
 export const API_URL_TOKEN = 'https://unsplash.com/oauth/token';
 export const URL_API_AUTH = 'https://unsplash.com/oauth/authorize';
-export const REDIRECT_URI = 'http://localhost:3000';
+export const REDIRECT_URI = 'https://gallery-three-sigma.vercel.app/';
 export const RESPONSE_TYPE = 'code';
 export const SCOPE = 'public read_user read_photos write_likes';
 
