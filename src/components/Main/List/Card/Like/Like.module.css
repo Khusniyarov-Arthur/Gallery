@@ -1,0 +1,25 @@
+.countLike {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  position: relative;
+  border: none;
+  background-color: inherit;
+  min-width: 20px;
+}
+
+.like {
+  width: 20px;
+  color: white;
+}
+
+.like:hover {
+  color: red
+}
+
+.counts{
+  padding-left: 10px;
+  font-size: 14px;
+}

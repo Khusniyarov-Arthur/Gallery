@@ -1,0 +1,23 @@
+.message { 
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 100;
+  display: block;
+  min-width: 120px;
+  border: 2px solid rgb(255, 40, 2);
+  background-color: rgba(255, 255, 255, 0.992);
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgb(90, 89, 89);
+  padding: 8px;
+  text-align: center;
+  font-size: 18px;
+  color: rgb(255, 0, 0);
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    bottom: 30px;
+    right: 30px;
+  }
+}

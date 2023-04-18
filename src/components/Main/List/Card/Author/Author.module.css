@@ -1,0 +1,12 @@
+.author{
+  display: block;
+  padding: 0 10px;
+  font-size: 14px;
+  color: white;
+  transition: color 0.5s linear;
+}
+
+a:hover {
+  color: rgb(146, 218, 246);
+  transition: color 0.5s linear;
+}

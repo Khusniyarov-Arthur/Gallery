@@ -1,0 +1,8 @@
+.link {
+  display: block;
+}
+
+.link:hover {
+  width: 34px;
+  transition: width 0.1s linear;
+}

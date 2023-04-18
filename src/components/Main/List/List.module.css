@@ -1,0 +1,23 @@
+.mymasonrygrid {
+  display: -webkit-box; 
+  display: -ms-flexbox; 
+  display: flex;
+  margin-left: -30px; 
+  width: auto;
+}
+.mymasonrygridcolumn {
+  padding-left: 30px; 
+  background-clip: padding-box;
+}
+
+.mymasonrygridcolumn > div { 
+  background: grey;
+  margin-bottom: 30px;
+}
+
+.loder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
