@@ -1,6 +1,6 @@
 import style from './Like.module.css';
 import {Massege} from '../../../../Massege/Massege';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import {likedRequestAsing} from '../../../../../store/getPhoto/actionGetPhoto';
@@ -25,6 +25,12 @@ export const Like = ({count}) => {
       dispatch(likedRequestAsing(id, isliked));
     }
   };
+
+  useEffect(() => {
+    if (!token) {
+      setIsLiked(false);
+    }
+  }, [token]);
 
   return (
     <div className={style.countLike}>

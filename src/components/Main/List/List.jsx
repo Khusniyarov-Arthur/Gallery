@@ -74,7 +74,8 @@ export const List = () => {
             </div>
           ))}
         </Masonry>
-      </ul>)}
+      </ul>)
+      }
       <li ref={endList} className={style.end}/>
     </>
   );

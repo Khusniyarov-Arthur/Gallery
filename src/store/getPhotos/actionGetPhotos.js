@@ -37,6 +37,8 @@ export const nextPage = (newPage) => ({
 });
 
 export const getPhotosRequestAsing = () => (dispatch, getState) => {
+  dispatch(getPhotosRequest());
+
   let options = {};
 
   const newPage = getState().getPhotosReducer.newPage;

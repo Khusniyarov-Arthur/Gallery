@@ -4,7 +4,7 @@ import {
   GET_PHOTOS_ERROR,
   PREV_PAGE,
   NEXT_PAGE,
-  CLEAR_PHOTOS
+  CLEAR_PHOTOS,
 } from './actionGetPhotos';
 
 const initialState = {
