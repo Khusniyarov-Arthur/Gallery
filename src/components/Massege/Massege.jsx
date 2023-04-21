@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 
 export const Massege = () => {
   const limitMess = useSelector(state => state.getPhotosReducer.limitMess);
-  // console.log(limitMess, 'лог из мес');
   return ReactDOM.createPortal(
     <>
       {limitMess ?

@@ -8,4 +8,3 @@ photoParams.append('per_page', 30);
 photoParams.append('page', 1);
 
 export const urlPhoto = photoParams.toString();
-console.log(urlPhoto);

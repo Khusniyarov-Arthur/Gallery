@@ -39,9 +39,6 @@ export const ViewPhoto = () => {
               <span className={style.link}>
                 Назад
               </span>
-              {/* <Link className={style.link} to='/'>
-                Назад
-              </Link> */}
             </button>
             <Date date={card.created}/>
           </div>

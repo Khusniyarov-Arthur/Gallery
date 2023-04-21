@@ -5,7 +5,6 @@ export const GET_PHOTOS_SUCCESS = 'GET_PHOTOS_SUCCESS';
 export const GET_PHOTOS_ERROR = 'GET_PHOTOS_ERROR';
 export const PREV_PAGE = 'PREV_PAGE';
 export const LIMIT_MESSAGE = 'LIMIT_MESSAGE';
-export const CLEAR_PHOTOS = 'CLEAR_PHOTOS';
 
 
 export const getPhotosRequest = () => ({
@@ -20,10 +19,6 @@ export const getPhotosRequestSuccess = (data) => ({
 export const getPhotosRequestError = (error) => ({
   type: GET_PHOTOS_ERROR,
   error,
-});
-
-export const clearPhotos = () => ({
-  type: CLEAR_PHOTOS,
 });
 
 export const prevPage = (page) => ({
@@ -41,30 +36,21 @@ export const getPhotosRequestAsing = () => (dispatch, getState) => {
 
   let options = {};
 
-  // const newPage = getState().getPhotosReducer.newPage;
   let page = getState().getPhotosReducer.page;
   const dataOld = getState().getPhotosReducer.data;
   const token = getState().tokenReducer.token;
 
   if (token) {
-    console.log('есть токен запрос будет с токеном');
     options = {
       headers: {
         Authorization: `Bearer ${token}`,
       }
     };
   }
-  // dispatch(prevPage(page += 1));
-
-  // const stop = true;
-  const stop = false;
-
-  if (stop) return;
 
   fetch(`${URL_API}/photos?client_id=${ACCESS_KEY}&per_page=10&page=${page}`, options)
     .then((response) => {
       if (response.status === 403) {
-        console.log(response.status);
         dispatch(limitMessage('Первышен лимит запросов'));
       } else {
         dispatch(limitMessage(''));
@@ -88,7 +74,6 @@ export const getPhotosRequestAsing = () => (dispatch, getState) => {
       dispatch(getPhotosRequestSuccess([...dataOld, ...photoData])) :
       dispatch(getPhotosRequestSuccess(photoData));
       dispatch(prevPage(page += 1));
-      console.log('получил фото и положил в стайт');
     })
     .catch(err => {
       dispatch(getPhotosRequestError(err));
