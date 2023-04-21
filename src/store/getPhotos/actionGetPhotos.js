@@ -4,7 +4,7 @@ export const GET_PHOTOS_REQUEST = 'GET_PHOTOS_REQUEST';
 export const GET_PHOTOS_SUCCESS = 'GET_PHOTOS_SUCCESS';
 export const GET_PHOTOS_ERROR = 'GET_PHOTOS_ERROR';
 export const PREV_PAGE = 'PREV_PAGE';
-export const NEXT_PAGE = 'NEXT_PAGE';
+export const LIMIT_MESSAGE = 'LIMIT_MESSAGE';
 export const CLEAR_PHOTOS = 'CLEAR_PHOTOS';
 
 
@@ -31,9 +31,9 @@ export const prevPage = (page) => ({
   page,
 });
 
-export const nextPage = (newPage) => ({
-  type: NEXT_PAGE,
-  newPage,
+export const limitMessage = (limitMess) => ({
+  type: LIMIT_MESSAGE,
+  limitMess,
 });
 
 export const getPhotosRequestAsing = () => (dispatch, getState) => {
@@ -41,20 +41,34 @@ export const getPhotosRequestAsing = () => (dispatch, getState) => {
 
   let options = {};
 
-  const newPage = getState().getPhotosReducer.newPage;
+  // const newPage = getState().getPhotosReducer.newPage;
+  let page = getState().getPhotosReducer.page;
   const dataOld = getState().getPhotosReducer.data;
   const token = getState().tokenReducer.token;
 
   if (token) {
+    console.log('есть токен запрос будет с токеном');
     options = {
       headers: {
         Authorization: `Bearer ${token}`,
       }
     };
   }
+  // dispatch(prevPage(page += 1));
 
-  fetch(`${URL_API}/photos?client_id=${ACCESS_KEY}&per_page=10&page=${newPage}`, options)
+  // const stop = true;
+  const stop = false;
+
+  if (stop) return;
+
+  fetch(`${URL_API}/photos?client_id=${ACCESS_KEY}&per_page=10&page=${page}`, options)
     .then((response) => {
+      if (response.status === 403) {
+        console.log(response.status);
+        dispatch(limitMessage('Первышен лимит запросов'));
+      } else {
+        dispatch(limitMessage(''));
+      }
       return response.json();
     })
     .then((data) => {
@@ -70,10 +84,11 @@ export const getPhotosRequestAsing = () => (dispatch, getState) => {
           small: item.urls.small,
         }
       ));
-      dispatch(prevPage(newPage));
-      newPage > 1 ?
+      page > 1 ?
       dispatch(getPhotosRequestSuccess([...dataOld, ...photoData])) :
       dispatch(getPhotosRequestSuccess(photoData));
+      dispatch(prevPage(page += 1));
+      console.log('получил фото и положил в стайт');
     })
     .catch(err => {
       dispatch(getPhotosRequestError(err));

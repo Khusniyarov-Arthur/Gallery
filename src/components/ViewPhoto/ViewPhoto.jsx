@@ -4,7 +4,7 @@ import Like from '../Main/List/Card/Like';
 import Author from '../Main/List/Card/Author';
 import Date from '../Main/List/Card/Date';
 import Header from '../Header';
-import {Link, useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
 import {getPhotoRequestAsing} from '../../store/getPhoto/actionGetPhoto';
@@ -15,6 +15,7 @@ export const ViewPhoto = () => {
   const card = useSelector(state => state.getPhotoReducer.photo);
   const {id} = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getPhotoRequestAsing(id));
@@ -33,11 +34,14 @@ export const ViewPhoto = () => {
           <div className={style.wrapBar}>
             <Like count={[card.countLikes, card.liked, id]}/>
             <Author author={[card.name, card.link]}/>
-            <button className={style.btnBack}
+            <button onClick={() => navigate(-1)} className={style.btnBack}
             >
-              <Link className={style.link} to='/'>
+              <span className={style.link}>
                 Назад
-              </Link>
+              </span>
+              {/* <Link className={style.link} to='/'>
+                Назад
+              </Link> */}
             </button>
             <Date date={card.created}/>
           </div>

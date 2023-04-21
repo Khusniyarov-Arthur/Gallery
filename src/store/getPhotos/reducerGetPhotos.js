@@ -3,7 +3,7 @@ import {
   GET_PHOTOS_SUCCESS,
   GET_PHOTOS_ERROR,
   PREV_PAGE,
-  NEXT_PAGE,
+  LIMIT_MESSAGE,
   CLEAR_PHOTOS,
 } from './actionGetPhotos';
 
@@ -11,8 +11,9 @@ const initialState = {
   loading: false,
   data: [],
   error: {},
-  page: null,
+  page: 1,
   newPage: 1,
+  limitMess: ''
 };
 
 export const getPhotosReducer = (state = initialState, action) => {
@@ -46,10 +47,10 @@ export const getPhotosReducer = (state = initialState, action) => {
         ...state,
         page: action.page,
       };
-    case NEXT_PAGE:
+    case LIMIT_MESSAGE:
       return {
         ...state,
-        newPage: action.newPage,
+        limitMess: action.limitMess,
       };
     default:
       return state;
